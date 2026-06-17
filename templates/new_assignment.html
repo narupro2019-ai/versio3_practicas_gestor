@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2>📅 Nueva Asignación de Práctica</h2>
+    
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form method="POST">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Estudiante</label>
+                        <select class="form-select" name="estudiante_id" required>
+                            <option value="">Seleccione un estudiante...</option>
+                            {% for e in estudiantes %}
+                            <option value="{{ e['id'] }}">{{ e['nombre'] }} ({{ e['cedula'] }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Docente</label>
+                        <select class="form-select" name="docente_id" required>
+                            <option value="">Seleccione un docente...</option>
+                            {% for d in docentes %}
+                            <option value="{{ d['id'] }}">{{ d['nombre'] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Escenario de Práctica</label>
+                        <select class="form-select" name="escenario_id" required>
+                            <option value="">Seleccione un escenario...</option>
+                            {% for es in escenarios %}
+                            <option value="{{ es['id'] }}">{{ es['nombre'] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Rotación</label>
+                        <select class="form-select" name="rotacion" required>
+                            <option value="1">Rotación 1</option>
+                            <option value="2">Rotación 2</option>
+                            <option value="3">Rotación 3</option>
+                            <option value="4">Rotación 4</option>
+                            <option value="5">Rotación 5</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Horario</label>
+                        <input type="text" class="form-control" name="horario" 
+                               placeholder="Ej: 7:00 a.m. – 12:00 m.">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Fecha Inicio</label>
+                        <input type="date" class="form-control" name="fecha_inicio" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Fecha Fin</label>
+                        <input type="date" class="form-control" name="fecha_fin" required>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Guardar Asignación</button>
+                    <a href="{{ url_for('asignaciones_list') }}" class="btn btn-secondary btn-lg">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

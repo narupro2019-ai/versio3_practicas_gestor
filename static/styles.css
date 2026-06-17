@@ -1,0 +1,10 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.btn-teal {
+    background-color: #14b8a6;
+    color: white;
+}
+.btn-teal:hover {
+    background-color: #0f766e;
+}

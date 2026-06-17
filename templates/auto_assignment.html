@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>⚡ Generar Rotaciones Automáticas</h2>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Estudiantes</label>
+                    <select class="form-select" name="estudiantes" multiple required>
+                        {% for e in estudiantes %}
+                        <option value="{{ e['id'] }}">{{ e['nombre'] }} ({{ e['cedula'] }})</option>
+                        {% endfor %}
+                    </select>
+                    <small class="text-muted">Seleccione varios estudiantes</small>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Docentes</label>
+                    <select class="form-select" name="docentes" multiple required>
+                        {% for d in docentes %}
+                        <option value="{{ d['id'] }}">{{ d['nombre'] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Escenarios</label>
+                    <select class="form-select" name="escenarios" multiple required>
+                        {% for es in escenarios %}
+                        <option value="{{ es['id'] }}">{{ es['nombre'] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Horario</label>
+                        <input type="text" class="form-control" name="horario" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Fecha Inicio</label>
+                        <input type="date" class="form-control" name="fecha_inicio" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Fecha Fin</label>
+                        <input type="date" class="form-control" name="fecha_fin" required>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-success btn-lg">Generar Rotaciones</button>
+                    <a href="{{ url_for('asignaciones_list') }}" class="btn btn-secondary btn-lg">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

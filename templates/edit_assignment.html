@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2>✏️ Editar Asignación de Práctica</h2>
+    
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form method="POST">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Estudiante</label>
+                        <select class="form-select" name="estudiante_id" required>
+                            {% for e in estudiantes %}
+                            <option value="{{ e['id'] }}" 
+                                {% if e['id'] == asignacion['estudiante_id'] %}selected{% endif %}>
+                                {{ e['nombre'] }} ({{ e['cedula'] }})
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Docente</label>
+                        <select class="form-select" name="docente_id" required>
+                            {% for d in docentes %}
+                            <option value="{{ d['id'] }}" 
+                                {% if d['id'] == asignacion['docente_id'] %}selected{% endif %}>
+                                {{ d['nombre'] }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Escenario de Práctica</label>
+                        <select class="form-select" name="escenario_id" required>
+                            {% for es in escenarios %}
+                            <option value="{{ es['id'] }}" 
+                                {% if es['id'] == asignacion['escenario_id'] %}selected{% endif %}>
+                                {{ es['nombre'] }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Rotación</label>
+                        <select class="form-select" name="rotacion" required>
+                            <option value="1" {% if asignacion['rotacion'] == 1 %}selected{% endif %}>Rotación 1</option>
+                            <option value="2" {% if asignacion['rotacion'] == 2 %}selected{% endif %}>Rotación 2</option>
+                            <option value="3" {% if asignacion['rotacion'] == 3 %}selected{% endif %}>Rotación 3</option>
+                            <option value="4" {% if asignacion['rotacion'] == 4 %}selected{% endif %}>Rotación 4</option>
+                            <option value="5" {% if asignacion['rotacion'] == 5 %}selected{% endif %}>Rotación 5</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Horario</label>
+                        <input type="text" class="form-control" name="horario" 
+                               value="{{ asignacion['horario'] | default('') }}">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Fecha Inicio</label>
+                        <input type="date" class="form-control" name="fecha_inicio" 
+                               value="{{ asignacion['fecha_inicio'] }}" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Fecha Fin</label>
+                        <input type="date" class="form-control" name="fecha_fin" 
+                               value="{{ asignacion['fecha_fin'] }}" required>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-success btn-lg">💾 Guardar Cambios</button>
+                    <a href="{{ url_for('asignaciones_list') }}" class="btn btn-secondary btn-lg">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

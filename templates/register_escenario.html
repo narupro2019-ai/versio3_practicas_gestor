@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2>🏥 Registrar Nuevo Escenario</h2>
+    
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Nombre del Lugar / Escenario</label>
+            <input type="text" class="form-control" name="nombre" required placeholder="Ej: ESE Hospital Santa Mónica">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Dirección</label>
+            <input type="text" class="form-control" name="direccion">
+        </div>
+
+        <button type="submit" class="btn btn-success btn-lg">Guardar Escenario</button>
+        <a href="{{ url_for('escenarios') }}" class="btn btn-secondary btn-lg">Cancelar</a>
+    </form>
+</div>
+
+{% endblock %}

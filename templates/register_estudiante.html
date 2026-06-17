@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2>👥 Registrar Nuevo Estudiante</h2>
+    
+    <form method="POST">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Cédula</label>
+                <input type="text" class="form-control" name="cedula" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Nombre Completo</label>
+                <input type="text" class="form-control" name="nombre" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Sitio / Grupo</label>
+                <input type="text" class="form-control" name="sitio" placeholder="Ej: PRÁCTICA I A.M (501)" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Nivel de Práctica</label>
+                <select class="form-select" name="nivel_practica" required>
+                    <option value="">Seleccione...</option>
+                    <option value="Práctica Hospitalaria Fisioterapéutica 1">Práctica Hospitalaria Fisioterapéutica 1</option>
+                    <option value="Práctica Fisioterapéutica 2">Práctica Fisioterapéutica 2</option>
+                    <option value="Práctica Fisioterapéutica 3">Práctica Fisioterapéutica 3</option>
+                    <option value="Práctica Integral">Práctica Integral</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Programa</label>
+                <input type="text" class="form-control" name="programa" value="Fisioterapia" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Sede</label>
+                <input type="text" class="form-control" name="sede" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" name="correo">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success btn-lg">Guardar Estudiante</button>
+        <a href="{{ url_for('estudiantes') }}" class="btn btn-secondary btn-lg">Cancelar</a>
+    </form>
+</div>
+
+{% endblock %}

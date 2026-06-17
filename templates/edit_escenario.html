@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2>✏️ Editar Escenario de Práctica</h2>
+    
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Nombre del Escenario</label>
+            <input type="text" class="form-control" name="nombre" 
+                   value="{{ escenario['nombre'] }}" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Dirección</label>
+            <input type="text" class="form-control" name="direccion" 
+                   value="{{ escenario['direccion'] }}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Cupos Disponibles</label>
+            <input type="number" class="form-control" name="cupos" 
+                   value="{{ escenario['cupos'] }}" min="1">
+        </div>
+
+        <button type="submit" class="btn btn-success btn-lg">Guardar Cambios</button>
+        <a href="{{ url_for('escenarios') }}" class="btn btn-secondary btn-lg">Cancelar</a>
+    </form>
+</div>
+
+{% endblock %}

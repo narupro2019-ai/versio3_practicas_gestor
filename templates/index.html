@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">🏠 Dashboard - Programación de Prácticas</h1>
+    <p class="text-center text-muted">Gestión Académica Fisioterapia 2026-1</p>
+
+    <!-- Botones Principales -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-12 text-center">
+            <a href="{{ url_for('new_assignment') }}" class="btn btn-primary btn-lg mx-2">📅 Nueva Asignación</a>
+            <a href="{{ url_for('estudiantes') }}" class="btn btn-info btn-lg mx-2">👥 Estudiantes</a>
+            <a href="{{ url_for('docentes') }}" class="btn btn-info btn-lg mx-2">👨‍🏫 Docentes</a>
+            <a href="{{ url_for('escenarios') }}" class="btn btn-info btn-lg mx-2">🏥 Escenarios</a>
+        </div>
+    </div>
+
+    <!-- Botones de Reportes -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-12 text-center">
+            <h5 class="mb-3">📊 Reportes Profesionales</h5>
+            <a href="{{ url_for('generate_excel_report') }}" class="btn btn-success btn-lg mx-2">
+                📊 Exportar Excel Completo
+            </a>
+            <a href="{{ url_for('generate_pdf_report') }}" class="btn btn-danger btn-lg mx-2">
+                📄 Exportar PDF
+            </a>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Últimas Asignaciones -->
+    <h3>📋 Últimas Asignaciones</h3>
+
+    {% if asignaciones %}
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Estudiante</th>
+                    <th>Docente</th>
+                    <th>Escenario</th>
+                    <th>Rotación</th>
+                    <th>Horario</th>
+                    <th>Inicio</th>
+                    <th>Fin</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for a in asignaciones %}
+                <tr>
+                    <td>{{ a['estudiante'] }}</td>
+                    <td>{{ a['docente'] }}</td>
+                    <td>{{ a['escenario'] }}</td>
+                    <td><strong>{{ a['rotacion'] }}</strong></td>
+                    <td>{{ a['horario'] }}</td>
+                    <td>{{ a['fecha_inicio'] }}</td>
+                    <td>{{ a['fecha_fin'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info text-center p-5">
+        <h4>No hay asignaciones registradas aún</h4>
+        <a href="{{ url_for('new_assignment') }}" class="btn btn-primary mt-3">Crear Primera Asignación</a>
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}
